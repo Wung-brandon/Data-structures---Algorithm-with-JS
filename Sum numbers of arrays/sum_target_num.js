@@ -27,3 +27,20 @@ function sumTargetNum(arr, target){
 }
 
 console.log(sumTargetNum([2, 4, 6, 3, 7, 5], 5)); // Output: [1, 3]
+
+function targetNum(arr, target){
+    let left = 0
+    let right = arr.length - 1
+    while(left < right){
+        let sum = arr[left] + arr[right]
+        if(sum === target){
+            return [arr[left], arr[right]]
+        }else if(sum < target){
+            left++
+        } else{
+            right--
+        }
+    }
+}
+
+console.log('target number', targetNum([2, 4, 6, 3, 7, 5], 5)); 
