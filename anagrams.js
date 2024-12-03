@@ -1,19 +1,29 @@
-function validAnagram(str1, str2) {
-    if (str1.length !== str2.length){
+function validAnagram(first, second) {
+    if (first.length !== second.length) {
+      return false;
+    }
+  
+    const lookup = {};
+  
+    for (let i = 0; i < first.length; i++) {
+      let letter = first[i];
+      // if letter exists, increment, otherwise set to 1
+      lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1;
+    }
+    console.log(lookup)
+  
+    for (let i = 0; i < second.length; i++) {
+      let letter = second[i];
+      // can't find letter or letter is zero then it's not an anagram
+      if (!lookup[letter]) {
         return false;
+      } else {
+        lookup[letter] -= 1;
+      }
     }
-    let strCounter1 = {}
-    let strCounter2 = {}
-    for (var char1 in str1) {
-
-        // console.log('str1', str1[char1])
-        strCounter1[str1[char1]] = (strCounter1[char1] || 0) + 1;
-    }
-    for (var char2 in str2) {
-        strCounter2[str2[char2]] = (strCounter2[char2] || 0) + 1;
-    }
-    console.log('counter1', strCounter1)
-    console.log('counter2', strCounter2)
-    
-}
-console.log('valid anagram', validAnagram('hello', 'llohe'))
+  
+    return true;
+  }
+  
+  // {a: 0, n: 0, g: 0, r: 0, m: 0,s:1}
+  validAnagram('anagrams', 'nagaramm')
